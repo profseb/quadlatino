@@ -7,7 +7,7 @@
 
 ?>
 
-<h3>Participantes (Listagem)</h3>
+<h3>Participantes - Listagem</h3>
 
 <a href="/quadlatino/app/?module=participante&action=import">Importar</a>
 

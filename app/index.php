@@ -10,6 +10,24 @@ $app = new App();
 <head>
 	<meta charset="utf-8" />
 	<title>Quadrado Latino - Experimento</title>
+
+	<style type="text/css">
+		body {padding-left:40px;font-family: arial;font-size: 80%;}
+		p {font-weight: bold;color:blue;}
+		strong {color:red;}
+		
+		.aba {padding-top:30px;margin:0 15px;padding-bottom:30px;}
+		#arranjos, #replicas {background-color: #FFF;}
+		.links {margin-left:15px;text-align:center;color:red;text-decoration:none;font:bold 12px verdana;display: inline-block;padding:10px 20px;background:#FFFCDE;width:200px;}
+		#quadrados {padding-top:20px;position: fixed;right:30px;top:30px;width:600px;height:550px;background:#E1E1E1;border: 1px solid #CCC;}
+		#replicas {display:none;height:440px;overflow: auto;}
+		.active {background: #FFF;color:blue;}
+
+		.replicas {margin-bottom: 20px;}		
+		.replicas tr td {font:normal 12px arial;}
+		summary {text-align: center;font:bold 12px arial;}
+
+	</style>
 </head>
 <body>
 

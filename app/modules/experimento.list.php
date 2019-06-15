@@ -7,7 +7,7 @@
 
 ?>
 
-<h3>Experimentos (Listagem)</h3>
+<h3>Experimentos - Listagem</h3>
 
 <table width="50%" border="1" cellpadding="5" cellspacing="0">
 	<tr>
