@@ -27,6 +27,8 @@ $app = new App();
 		.replicas tr td {font:normal 12px arial;}
 		summary {text-align: center;font:bold 12px arial;}
 
+		.error {display: none;padding-bottom:10px;color:red;}
+
 	</style>
 </head>
 <body>
@@ -37,6 +39,7 @@ $app = new App();
 	<ul>
 		<li><a href="/quadlatino/app/">Início</a></li>
 		<li><a href="/quadlatino/app/?module=participante">Participantes</a></li>
+		<li><a href="/quadlatino/app/?module=atividade">Atividades</a></li>
 	</ul>
 
 
@@ -48,9 +51,12 @@ $app = new App();
 			require_once "modules/experimento.php";
 		}
 
-		if ($_GET["module"] == "participante") { 
-			
+		if ($_GET["module"] == "participante") { 			
 			require_once "modules/participante.php";
+		}
+
+		if ($_GET["module"] == "atividade") { 			
+			require_once "modules/atividade.php";
 		}
 	?>
 

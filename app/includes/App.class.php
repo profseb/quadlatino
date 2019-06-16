@@ -8,7 +8,7 @@ class App {
 		$this->con = new Mysqli("localhost","root","ifma","unplugged_opencv");
 	}
 
-	public function insert($table, $values) {
+	public function insert($table, $values, $debug = false) {
 
 		$cols = array();
 		foreach($values as $key=>$item) {
@@ -18,9 +18,27 @@ class App {
 
 		$sql = "insert into $table values (null, $cols)";
 
+		if ($debug) {
+			echo $sql;exit;
+		}
+
 		$res = $this->con->query($sql);
 
 		return $this->con->insert_id;
+
+	}
+
+	public function update($table,$columns, $id) {
+
+		$cols = array();
+		foreach($columns as $field=>$value) {
+			$cols[] = "$field = '$value'";
+		}
+		$cols = implode(", ",$cols);
+
+		$sql = "update $table set $cols where $id";
+
+		$this->con->query($sql);
 
 	}
 
@@ -42,20 +60,38 @@ class App {
 
 		$sql = "select * from $table where $id";
 
-		$res = $this->con->query($sql);
-
-		$rows = array();
-
-		while($row = $res->fetch_assoc()) {
-			$rows[] = $row;
-		}	
-
-		return $rows[0];
+		$res = $this->query($sql);
+		
+		return $res[0];
 
 	}
 
-	public static function redirect($module, $action) {
-		header("location: http://localhost/quadlatino/app/?module=$module&action=$action");
+	public function getTable($table, $where = null) {
+
+		if (!is_null($where)) {
+			$where = " where $where";
+		}
+
+		$sql = "select * from $table $where";
+
+		return $this->query($sql);
+
+	}
+
+
+	public static function redirect($module, $action = "", $id = "") {
+
+		if (!empty($id)) {
+			header("location: http://localhost/quadlatino/app/?module=$module&action=$action&id=$id");	
+			exit;
+		}
+
+		if (!empty($action)) {
+			header("location: http://localhost/quadlatino/app/?module=$module&action=$action");			
+		} else {
+			header("location: http://localhost/quadlatino/app/?module=$module");	
+		}
+		
 		exit;
 	}
 
