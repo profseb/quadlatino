@@ -144,6 +144,72 @@
 
 </form>
 
+<h3>Réplicas de Quadrados</h3>
+
+<?php
+
+	$qs = $app->getTable("quadrados_replicas");
+
+	$quadrados = array();
+
+	foreach($qs as $key=>$item) {
+
+		$ativs = array($item["ativ_part1"],$item["ativ_part2"],$item["ativ_part3"],$item["ativ_part4"]);
+		$ativs = implode(",", $ativs);
+
+		$ativs = $app->query("select participante, atividade from atividades_participantes ap, sessoes_atividades sa, atividades a, participantes p where ap.id_sess_ativ = sa.id_sess_ativ and sa.id_atividade = a.id_atividade and ap.id_participante = p.id_participante and id_ativ_part in ($ativs)");
+		
+		$rows = array();
+		$cols = array();
+		$ps = array();
+
+		foreach($ativs as $k=>$at) {			
+			$cells = explode("(", $at["atividade"]);
+			$rows[] = trim($cells[0]);
+			$s = explode(")",$cells[1]);
+			$s = $s[0];
+			$cols[] = $s;
+			$ps[] = $at["participante"];
+		}	
+
+		$cols = array_unique($cols);
+		$ps = array_unique($ps);
+
+		$quadrado = array();
+		$quadrado[] = array("",$cols[0],$cols[1]);
+		$quadrado[] = array($ps[0],$rows[0],$rows[1]);
+		$quadrado[] = array($ps[2],$rows[2],$rows[3]);
+
+		$quadrados[] = $quadrado;
+	
+
+	}
+
+?>
+
+<?php foreach($quadrados as $key=>$q) { ?>
+
+<table width="40%" border="1" cellpadding="5" cellspacing="0">
+	
+	<tr>
+		<th width="60%"><?=$q[0][0]?></th>		
+		<th><?=$q[0][1]?></th>		
+		<th><?=$q[0][2]?></th>		
+	</tr>		
+	<tr>
+		<th><?=$q[1][0]?></th>
+		<td align="center"><?=$q[1][1]?></td>
+		<td align="center"><?=$q[1][2]?></td>		
+	</tr>
+	<tr>
+		<th><?=$q[2][0]?></th>
+		<td align="center"><?=$q[2][1]?></td>
+		<td align="center"><?=$q[2][2]?></td>		
+	</tr>	
+</table>
+<br />
+<?php }  ?>	
+
 <script type="text/javascript">
 
 	function $(el) {
