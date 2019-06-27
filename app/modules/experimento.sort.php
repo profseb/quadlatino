@@ -11,6 +11,8 @@
 
 		$gcount = count($participantes)/count($sessoes);
 
+		$replis = array();
+
 		while(count($participantes) > 0) {
 
 			foreach($sessoes as $key=>$sess) {
@@ -19,9 +21,18 @@
 
 				$p = array_shift($participantes);
 
+				
+
 				foreach($sessativs as $k=>$s) {
-						
-					$app->insert("atividades_participantes",array($s["id_sess_ativ"],$p["id_participante"]));
+		
+					$id_ativ_part = $app->insert("atividades_participantes",array($s["id_sess_ativ"],$p["id_participante"]));
+
+					$replis[] = $id_ativ_part;
+
+					if (count($replis) == 4) {
+						$app->insert("quadrados_replicas",array(1,$replis[0],$replis[1],$replis[2],$replis[3]));
+						$replis = array();
+					}
 
 					$app->update("participantes",array("sorteado"=>1),"id_participante = {$p["id_participante"]}");
 				

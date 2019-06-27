@@ -42,6 +42,12 @@ class App {
 
 	}
 
+	public function execSQL($sql) {
+
+		return $this->con->query($sql);	
+
+	}
+
 	public function query($sql) {
 
 		$res = $this->con->query($sql);
@@ -78,6 +84,10 @@ class App {
 
 	}
 
+	public static function goToURL($url) {
+		header("location: $url");	
+		exit;
+	}
 
 	public static function redirect($module, $action = "", $id = "") {
 

@@ -157,7 +157,7 @@
 		$ativs = array($item["ativ_part1"],$item["ativ_part2"],$item["ativ_part3"],$item["ativ_part4"]);
 		$ativs = implode(",", $ativs);
 
-		$ativs = $app->query("select participante, atividade from atividades_participantes ap, sessoes_atividades sa, atividades a, participantes p where ap.id_sess_ativ = sa.id_sess_ativ and sa.id_atividade = a.id_atividade and ap.id_participante = p.id_participante and id_ativ_part in ($ativs)");
+		$ativs = $app->query("select participante, atividade from atividades_participantes ap, sessoes_atividades sa, atividades a, participantes p, sessoes s where ap.id_sess_ativ = sa.id_sess_ativ and sa.id_atividade = a.id_atividade and ap.id_participante = p.id_participante and s.id_sessao = sa.id_sessao and s.id_experimento = $id and id_ativ_part in ($ativs)");
 		
 		$rows = array();
 		$cols = array();
