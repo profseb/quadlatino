@@ -2,6 +2,7 @@
 
 class App {
 
+	var $base_url = "http://localhost/";
 	var $con;
 
 	public function __construct() {
@@ -92,14 +93,14 @@ class App {
 	public static function redirect($module, $action = "", $id = "") {
 
 		if (!empty($id)) {
-			header("location: http://localhost/quadlatino/app/?module=$module&action=$action&id=$id");	
+			header("location: " . App::$base_url . "quadlatino/app/?module=$module&action=$action&id=$id");	
 			exit;
 		}
 
 		if (!empty($action)) {
-			header("location: http://localhost/quadlatino/app/?module=$module&action=$action");			
+			header("location: " . App::$base_url . "quadlatino/app/?module=$module&action=$action");			
 		} else {
-			header("location: http://localhost/quadlatino/app/?module=$module");	
+			header("location: " . App::$base_url . "quadlatino/app/?module=$module");	
 		}
 		
 		exit;

@@ -11,6 +11,8 @@ $app = new App();
 	<meta charset="utf-8" />
 	<title>Quadrado Latino - Experimento</title>
 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
 	<style type="text/css">
 		body {padding-left:40px;font-family: arial;font-size: 80%;}
 		p {font-weight: bold;color:blue;}

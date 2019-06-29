@@ -128,6 +128,7 @@ $itens = $app->query("select * from atividades_participantes ap, participantes p
 				<td align="center">
 					<?=$it["id_ativ_part"]?>
 					<input type="hidden" name="id[]" value="<?=$it["id_ativ_part"]?>" />		
+					<span id="solution-<?=$it["id_ativ_part"]?>" style="visibility: hidden;"></span>
 				</td>
 				<td><?=str_replace(" / "," e <br />",$it["participante"])?></td>		
 				<td align="center" id="upload-<?=$it["id_ativ_part"]?>">		
@@ -195,7 +196,7 @@ $itens = $app->query("select * from atividades_participantes ap, participantes p
 
 	</div>
 
-	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript">
 		
 		var blockList = [];
@@ -248,7 +249,7 @@ $itens = $app->query("select * from atividades_participantes ap, participantes p
 
 		function closeBlocks() {
 
-			$("#upload-"+solutionId).append('<input type="hidden" name="solution[]" value="'+ solution +'" />');
+			$("#solution-"+solutionId).append('<input type="hidden" name="solution[]" value="'+ solution +'" />');
 			
 
 			solution = "";
