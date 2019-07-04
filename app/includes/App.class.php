@@ -2,7 +2,7 @@
 
 class App {
 
-	var $base_url = "http://localhost/";
+	public static $base_url = "http://localhost/";
 	var $con;
 
 	public function __construct() {
